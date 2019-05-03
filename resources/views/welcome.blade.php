@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel Queues
+                    Laravel Queues 2
                 </div>
 
                 <div class="links">
