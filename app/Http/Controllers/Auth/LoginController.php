@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Carbon\Carbon;
+use App\Jobs\Users\UpdateLastLogin;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -35,5 +38,11 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    // davery
+    protected function authenticated(Request $request, $user)
+    {
+        $this->dispatch(new UpdateLastLogin($user, Carbon::now()));
     }
 }

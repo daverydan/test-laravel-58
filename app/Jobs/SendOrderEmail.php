@@ -24,6 +24,7 @@ class SendOrderEmail implements ShouldQueue
      *
      * @return void
      */
+//    public function __construct()
     public function __construct(Order $order)
     {
         $this->order = $order;
@@ -36,12 +37,15 @@ class SendOrderEmail implements ShouldQueue
      */
     public function handle()
     {
-        /*$recipient = 'danny@example.com';
+//        Log::info('something');
+        /*Log::info('something');
+        $recipient = 'danny@example.com';
         Mail::to($recipient)->send(new OrderShipped($this->order));
         Log::info('Emailed order ' . $this->order->id);*/
 
         // Allow only 2 emails every 1 second
-        Redis::throttle('my-mailtrap')->allow(2)->every(1)->then(function () {
+//        Redis::throttle('my-mailtrap')->allow(2)->every(1)->then(function () {
+        Redis::throttle('my-mailtrap')->allow(1)->every(1)->then(function () {
 
             $recipient = 'danny@example.com';
             Mail::to($recipient)->send(new OrderShipped($this->order));

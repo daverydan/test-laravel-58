@@ -12,7 +12,12 @@
 */
 
 Route::get('/', function () {
+//    dispatch(new \App\Jobs\SendOrderEmail);
     return view('welcome');
 });
 
 Route::get('mail', 'MailController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
