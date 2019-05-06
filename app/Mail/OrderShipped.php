@@ -33,7 +33,7 @@ class OrderShipped extends Mailable
     public function build()
     {
 //        Log::info('something');
-//        Log::info('Emailed order ' . $this->order->id);
+        Log::info('Emailed order ' . $this->order->id);
         return $this->markdown('emails.orders.shipped');
     }
 }

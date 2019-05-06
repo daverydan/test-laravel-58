@@ -37,6 +37,7 @@ class SendOrderEmail implements ShouldQueue
      */
     public function handle()
     {
+//        dd('hit');
 //        Log::info('something');
         /*Log::info('something');
         $recipient = 'danny@example.com';

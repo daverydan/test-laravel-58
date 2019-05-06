@@ -26,16 +26,16 @@ class MailController extends Controller
 
         return 'Dispatched order ' . $order->id;*/
 
-        for ($i=0; $i<20; $i++) {
+        for ($i=0; $i<10; $i++) {
             $order = Order::findOrFail( rand(1,50) );
 
-            if (rand(1, 3) > 1) {
+//            if (rand(1, 3) > 1) {
                 Log::info('Dispatched email order ' . $order->id);
                 SendOrderEmail::dispatch($order)->onQueue('email');
-            } else {
+            /*} else {
                 Log::info('Dispatched sms order ' . $order->id);
                 SendOrderEmail::dispatch($order)->onQueue('sms');
-            }
+            }*/
         }
 
         return 'Dispatched orders';
