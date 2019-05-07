@@ -26,8 +26,12 @@ class MailController extends Controller
 
         return 'Dispatched order ' . $order->id;*/
 
-        for ($i = 0; $i < 20; $i++) {
-            $order = Order::findOrFail( rand(1,50) );
+        $orders = Order::all();
+
+        $orders->each(function($order) {
+//        foreach($orders as $order) {
+        /*for ($i = 0; $i < 20; $i++) {
+            $order = Order::findOrFail( rand(1,50) );*/
 
             Mail::to($order->email)->queue(new OrderShipped($order));
 
@@ -38,7 +42,7 @@ class MailController extends Controller
                 Log::info('Dispatched sms order ' . $order->id);
                 SendOrderEmail::dispatch($order)->onQueue('sms');
             }*/
-        }
+        });
 
         return 'Dispatched orders';
     }
