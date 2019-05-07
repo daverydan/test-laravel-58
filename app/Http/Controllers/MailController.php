@@ -26,12 +26,14 @@ class MailController extends Controller
 
         return 'Dispatched order ' . $order->id;*/
 
-        for ($i=0; $i<10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $order = Order::findOrFail( rand(1,50) );
 
+            Mail::to('danny@example.com')->queue(new OrderShipped($order));
+
 //            if (rand(1, 3) > 1) {
-                Log::info('Dispatched email order ' . $order->id);
-                SendOrderEmail::dispatch($order)->onQueue('email');
+//                Log::info('Dispatched email order ' . $order->id);
+//                SendOrderEmail::dispatch($order)->onQueue('email');
             /*} else {
                 Log::info('Dispatched sms order ' . $order->id);
                 SendOrderEmail::dispatch($order)->onQueue('sms');

@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
@@ -21,6 +22,7 @@ Route::get('/', function () {
 Route::get('mail', 'MailController@index');
 
 Route::get('davery', function() {
+    Log::info('sent test mail');
     Mail::to('danny@example.com')->queue(new \App\Mail\Test());
 });
 
